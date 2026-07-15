@@ -2,11 +2,12 @@
  * Restaurant Review System
  *
  * Group Members:
- * ________________________
- * ________________________
- * ________________________
+ * Brandon Diaz-Perez
+ * Brendan Hulse
+ * Pranav Vadibel
  *
  * CPSC 39
+ * 7/15/26
  */
 
 import java.io.File;
