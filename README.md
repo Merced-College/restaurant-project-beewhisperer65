@@ -56,11 +56,11 @@ By completing this assignment, you should be able to:
 
 # Student Information
 
-**Name:**
+**Name: Brendan Hulse**
 
 ---
 
-**Group Number:**
+**Group Number: 5**
 
 ---
 
@@ -71,7 +71,7 @@ By completing this assignment, you should be able to:
 Check the class you were responsible for creating.
 
 * [ ] Restaurant
-* [ ] MenuItem
+* [X] MenuItem
 * [ ] Ingredient
 
 ---
