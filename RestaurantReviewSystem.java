@@ -59,8 +59,8 @@ public class RestaurantReviewSystem
                 // Parse the line and assign values to the variables.
                 //---------------------------------------------------
                 for (Restaurant r : restaurants) {
-                   if (r.getName().equals(restaurantName)) {
-                    restaurant = r;
+                   if (!r.getName().equals(restaurantName)) {
+                    
                     break;
                    }
                 }
@@ -207,4 +207,3 @@ public class RestaurantReviewSystem
     }
 
 }
-```
