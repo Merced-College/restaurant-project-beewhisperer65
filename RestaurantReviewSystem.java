@@ -49,6 +49,7 @@ public class RestaurantReviewSystem
 
                 //Brendan Hulse
                 String[] data = line.split(",");
+                restaurantName = data[0];
 
                 // Ingredient String
                 String ingredientData = "";
@@ -57,7 +58,12 @@ public class RestaurantReviewSystem
                 // TODO:
                 // Parse the line and assign values to the variables.
                 //---------------------------------------------------
-
+                for (Restaurant r : restaurants) {
+                   if (r.getName().equals(restaurantName)) {
+                    restaurant = r;
+                    break;
+                   }
+                }
                 //---------------------------------------------------
                 // TODO:
                 // Search the ArrayList to determine whether this
