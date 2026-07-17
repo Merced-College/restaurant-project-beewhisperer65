@@ -136,19 +136,19 @@ Examples:
 
 # Group Meeting
 
-## Date
+## Date 7/1/26
 
 ---
 
-## Time
+## Time 3:00
 
 ---
 
 ## Members Present
 
-* [ ]
-* [ ]
-* [ ]
+* [X] Brandon
+* [X] Brendan
+* [X] Pranav
 
 ## What did your group accomplish?
 
