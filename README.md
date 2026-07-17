@@ -60,7 +60,7 @@ By completing this assignment, you should be able to:
 
 ---
 
-**Group Number: 5**
+**Group Number: 1**
 
 ---
 
@@ -250,6 +250,6 @@ Before submitting, verify that:
 
 I certify that I actively participated in this group assignment, understand the code submitted in my repository, and completed my assigned responsibilities while collaborating appropriately with my group.
 
-Student Signature:
+Student Signature: Brendan Hulse
 
 ---
