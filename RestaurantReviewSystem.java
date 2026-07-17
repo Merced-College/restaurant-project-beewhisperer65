@@ -47,6 +47,9 @@ public class RestaurantReviewSystem
                 double price = 0;
                 int calories = 0;
 
+                //Brendan Hulse
+                String[] data = line.split(",");
+
                 // Ingredient String
                 String ingredientData = "";
 
