@@ -41,8 +41,8 @@ public class Restaurant {
     //toString 
     @Override 
     public String toString() {
-        return "Restaurant{name'" + name + "', cuisine='" + cuisine +
-        "', rating=" + rating + ", menuItems=" + menuItems.size() + "}";
+        return "Restaurant{name " + name + ", cuisine= " + cuisine +
+        ", rating=" + rating + ", Menu Items=" + menuItems.size() + "}";
     }
 
 }

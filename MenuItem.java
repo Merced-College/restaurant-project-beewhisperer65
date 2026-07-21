@@ -31,7 +31,10 @@ public class MenuItem {
     public void setCalories(int newCalories) {calories = newCalories;}
     public ArrayList<Ingredient> getIngredients() {return ingredients;}
     public void addIngredient(Ingredient ingredient) {ingredients.add(ingredient);}
+    
+    @Override 
     public String toString() {
-        return getClass().getName();
+        return "Menu Item {name " + name + ", category= " + category +
+        ", price=" + price + ", Ingredients=" + ingredients.size() + "}";
     }
 }

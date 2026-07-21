@@ -16,6 +16,13 @@ public class Ingredient{
 
     }
 
+    // Parameteized constructor with no allergy type
+    public Ingredient(String name, boolean allergen)
+    {
+        this.name = name;
+        this.allergen = allergen;
+    }
+    
     // Parameteized constructor initializes all Ingredient information
     public Ingredient(String name, boolean allergen, String allergenType)
     {
@@ -61,9 +68,14 @@ public class Ingredient{
     }
 
     // Returns a formatted String describing the ingredient
-    public String toString()
-    {
-        return "Name: " + name + "\nAllergen: " + allergen + "\nAllergen Type: " + allergenType;
+    @Override 
+    public String toString() {
+        if (allergen) {
+            return "Ingredient {name " + name + ", is allergen? = " + allergen + " allergen type = " + allergenType + "}";
+        }
+        else {
+            return "Ingredient {name " + name + ", is allergen? = " + allergen + "}";
+        }
     }
 
     

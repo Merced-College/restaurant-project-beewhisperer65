@@ -15,23 +15,23 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class RestaurantReviewSystem
-{
-    public static void main(String[] args)
-    {
+public class RestaurantReviewSystem {
+
+    public static void main(String[] args) {
         ArrayList<Restaurant> restaurants = new ArrayList<>();
 
-        try
-        {
+        try {
             Scanner file = new Scanner(new File("restaurant-data.csv"));
 
             // Skip header row
             file.nextLine();
 
-            while (file.hasNextLine())
-            {
+            while (file.hasNextLine()) {
                 String line = file.nextLine();
-
+                //Brendan Hulse
+                if (line.equals(",,,,,,,")) {
+                    continue;
+                }
                 // TODO:
                 // Split the CSV line into fields.
                 // Hint: There are 8 columns.
@@ -47,75 +47,60 @@ public class RestaurantReviewSystem
                 double price = 0;
                 int calories = 0;
 
-                //Brendan Hulse
-                String[] data = line.split(",");
-                restaurantName = data[0];
+                //Brandon
+                String[] fields = line.split(","); // split everything between commas
+
+                restaurantName = fields[0];
+                cuisine = fields[1];
+                rating = Double.parseDouble(fields[2]);
+                menuItemName = fields[3];
+                category = fields[4];
+                price = Double.parseDouble(fields[5]);
+                calories = Integer.parseInt(fields[6]);
+                String ingredientData = fields[7]; // complicated ingredient stuff
 
                 // Ingredient String
-                String ingredientData = "";
+                
 
                 //---------------------------------------------------
                 // TODO:
                 // Parse the line and assign values to the variables.
                 //---------------------------------------------------
-                for (Restaurant r : restaurants) {
-                   if (!r.getName().equals(restaurantName)) {
-                    
-                    break;
-                   }
+                // Brendan
+                boolean isTrue = true;
+                for (Restaurant r : restaurants) { // Checks to see whether the restaurant exists in our database already. Is true if it doesn't exist
+                    if (!r.getName().equals(restaurantName)&&isTrue) {
+                        isTrue = true;
+                    }
+                    else {
+                        isTrue = false;
+                    }
                 }
-                //---------------------------------------------------
-                // TODO:
-                // Search the ArrayList to determine whether this
-                // restaurant already exists.
-                //---------------------------------------------------
-
-                Restaurant restaurant = null;
-
-                //---------------------------------------------------
-                // TODO:
-                // If the restaurant does not exist,
-                // create it and add it to the ArrayList.
-                //---------------------------------------------------
-
-                //---------------------------------------------------
-                // TODO:
-                // Create the MenuItem object.
-                //---------------------------------------------------
-
-                MenuItem menuItem = null;
-
-                //---------------------------------------------------
-                // TODO:
-                // Split the ingredient string using ';'
-                //---------------------------------------------------
-
-                // Example:
-                // String[] ingredients = ingredientData.split(";");
-
-                //---------------------------------------------------
-                // TODO:
-                // For each ingredient:
-                //
-                // Split using "|"
-                //
-                // Example:
-                // String[] data = ingredient.split("\\|");
-                //
-                // data[0] = ingredient name
-                // data[1] = allergen (true/false)
-                // data[2] = allergen type
-                //
-                // Create an Ingredient object.
-                // Add it to the MenuItem.
-                //---------------------------------------------------
-
-
-                //---------------------------------------------------
-                // TODO:
-                // Add the MenuItem to the Restaurant.
-                //---------------------------------------------------
-
+                if (isTrue) { // adds the restaurant if not already there
+                    Restaurant newRestaurant = new Restaurant();
+                    newRestaurant.setName(restaurantName);
+                    newRestaurant.setCuisine(cuisine);
+                    newRestaurant.setRating(rating);
+                    restaurants.add(newRestaurant);
+                }
+                for (Restaurant r : restaurants) { // adds current line's menu item into the restaurant that is definitely now on the list
+                    if(r.getName().equals(restaurantName)) {
+                        MenuItem newItem = new MenuItem(menuItemName, category, price, calories); // already split the data and have parameterized constructor
+                        String[] data = ingredientData.split(";");
+                        for (String a : data) {
+                            String[] thisIngredient = a.split("\\|"); // vertical bar is apparently special character so had to do special things to split it
+                            if (thisIngredient.length == 2) {
+                                Ingredient newIngredient = new Ingredient(thisIngredient[0], Boolean.parseBoolean(thisIngredient[1]));
+                                newItem.addIngredient(newIngredient);
+                            }
+                            else {
+                                Ingredient newIngredient = new Ingredient(thisIngredient[0], Boolean.parseBoolean(thisIngredient[1]), thisIngredient[2]);
+                                newItem.addIngredient(newIngredient);
+                            }
+                        }
+                        r.addMenuItem(newItem); // slams it all together
+                    }
+                }
             }
 
             file.close();
@@ -129,10 +114,16 @@ public class RestaurantReviewSystem
         //-------------------------------------------------------
         // Display all restaurants
         //-------------------------------------------------------
-
+        // Brendan
         for (Restaurant restaurant : restaurants)
         {
-            System.out.println(restaurant);
+            System.out.println(restaurant); // print restaurants
+            for (MenuItem menu : restaurant.getMenuItems()) {
+                System.out.println(menu); // print their whole menu below each restaurant
+                for (Ingredient ingredient : menu.getIngredients()) {
+                    System.out.println(ingredient); // print every ingredient in each item below the menu item
+                }
+            }
             System.out.println();
         }
 
@@ -200,9 +191,7 @@ public class RestaurantReviewSystem
 
     }
 
-    public static void menuItemsUnderPrice(ArrayList<Restaurant> restaurants,
-                                           double price)
-    {
+    public static void menuItemsUnderPrice(ArrayList<Restaurant> restaurants, double price) {
 
     }
 
